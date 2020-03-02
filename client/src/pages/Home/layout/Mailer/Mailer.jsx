@@ -1,5 +1,5 @@
 import React from 'react';
-import MailerImg from '../../assets/email.png';
+import MailerImg from './../../../../assets/email.png';
 
 import './Mailer.scss';
 

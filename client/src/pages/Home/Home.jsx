@@ -5,6 +5,7 @@ import Hero from './layout/Hero/Hero';
 import ArtworkWeek from './layout/ArtworkWeek/ArtworkWeek';
 import ArtistWeek from './layout/ArtistWeek/ArtistWeek';
 import CollectionPreview from './layout/CollectionPreview/CollectionPreview';
+import Mailer from './layout/Mailer/Mailer';
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <CollectionPreview />
       <CollectionPreview />
       <CollectionPreview />
+      <Mailer />
     </div>
   );
 };
