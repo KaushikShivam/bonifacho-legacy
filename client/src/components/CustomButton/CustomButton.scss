@@ -1,0 +1,17 @@
+.Button {
+  font-family: 'Playfair Display', 'Courier New';
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    filter: brightness(90%);
+  }
+}
