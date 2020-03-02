@@ -1,6 +1,6 @@
 import React from 'react';
 import Fineart from './../../../../assets/Fine-art.png';
-import FormButton from '../../components/FormButton/FormButton';
+import FormButton from './../../../../components/FormButton/FormButton';
 
 import './FineArt.scss';
 
