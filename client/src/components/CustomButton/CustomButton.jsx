@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Button.scss';
+import './CustomButton.scss';
 
 const Button = ({ children, backgroundColor, padding, fontSize }) => {
   return (
