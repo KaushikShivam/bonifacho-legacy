@@ -13,6 +13,9 @@ const Home = () => {
       <ArtworkWeek />
       <ArtistWeek />
       <CollectionPreview />
+      <CollectionPreview />
+      <CollectionPreview />
+      <CollectionPreview />
     </div>
   );
 };
