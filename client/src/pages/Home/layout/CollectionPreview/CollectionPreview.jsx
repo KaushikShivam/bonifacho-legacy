@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './CollectionPreview.scss';
 
-import Button from '../../components/Button/Button';
-import CustomLink from '../../components/CustomLink/CustomLink';
-import ArtworkSmall from '../../components/ArtworkSmall/ArtworkSmall';
+import CustomButton from './../../../../components/CustomButton/CustomButton';
+import CustomLink from './../../../../components/CustomLink/CustomLink';
+import ArtworkSmall from './../../../../components/ArtworkSmall/ArtworkSmall';
 
 const CollectionPreview = () => {
   return (
@@ -11,20 +11,20 @@ const CollectionPreview = () => {
       <div className="CollectionPreview-header">
         <h3 className="CollectionPreview-title">BEST SELLERS</h3>
         <div className="CollectionPreview-buttons">
-          <Button
+          <CustomButton
             backgroundColor="#AB9B8A"
             padding="1.1rem 2rem"
             fontSize="1.2rem"
           >
             LIMITED EDITIONS
-          </Button>
-          <Button
+          </CustomButton>
+          <CustomButton
             backgroundColor="black"
             padding="1.1rem 2rem"
             fontSize="1.2rem"
           >
             ORIGINAL ARTWORKS
-          </Button>
+          </CustomButton>
         </div>
       </div>
       <div className="CollectionPreview-artworks">
