@@ -2,7 +2,7 @@ import React from 'react';
 import sampleArtworkBig from '../../assets/sampleArtworkBig.png';
 import './ArtworkBig.scss';
 
-import Button from '../Button/Button';
+import CustomButton from './../CustomButton/CustomButton';
 
 const ArtworkBig = () => {
   return (
@@ -16,9 +16,13 @@ const ArtworkBig = () => {
           <p className="ArtworkBig-author">Thomas Bijen</p>
         </div>
         <div className="ArtworkBig-detail">
-          <Button backgroundColor={`#AB9B8A`} padding="5px 7px" fontSize="1rem">
+          <CustomButton
+            backgroundColor={`#AB9B8A`}
+            padding="5px 7px"
+            fontSize="1rem"
+          >
             SHOP NOW
-          </Button>
+          </CustomButton>
           <p className="ArtworkBig-price">$3,490</p>
         </div>
       </div>

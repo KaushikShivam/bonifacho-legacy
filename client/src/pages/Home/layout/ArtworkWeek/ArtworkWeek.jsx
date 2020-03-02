@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ArtworkWeek.scss';
 
-// import ArtworkBig from './../../components/ArtworkBig/ArtworkBig';
+import ArtworkBig from './../../../../components/ArtworkBig/ArtworkBig';
 // import CustomLink from './../../components/CustomLink/CustomLink';
 
 const ArtworkWeek = () => {
@@ -9,8 +9,8 @@ const ArtworkWeek = () => {
     <div className="ArtworkWeek">
       <h2 className="ArtworkWeek-title">ARTWORKS OF THE WEEK</h2>
       <div className="ArtworkWeek-content">
-        {/* <ArtworkBig /> */}
-        {/* <ArtworkBig /> */}
+        <ArtworkBig />
+        <ArtworkBig />
       </div>
       <div className="ArtworkWeek-link">
         {/* <CustomLink>SHOP ALL ARTWORKS</CustomLink> */}
