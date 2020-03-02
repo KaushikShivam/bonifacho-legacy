@@ -1,0 +1,114 @@
+.Navbar {
+  background-color: black;
+
+  .signin,
+  .register,
+  a {
+    text-decoration: none;
+    color: white;
+    transition: all .2s;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(70%);
+    }
+  }
+
+  &-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 3rem 2rem;
+    color: white;
+    font-family: 'Montserrat', 'Courier New', Courier, monospace;
+    font-size: 1.4rem;
+
+    &-left {
+      display: flex;
+      align-items: center;
+      letter-spacing: 1px;
+
+      .phone {
+        display: flex;
+        align-items: center;
+        margin-left: 3rem;
+
+        &>* {
+          margin: 0 5px;
+        }
+      }
+    }
+
+    &-center {
+      margin: 0 auto;
+    }
+
+    &-right {
+      justify-self: flex-end;
+      display: flex;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.54);
+
+      .login {
+        &>* {
+          margin-left: 2rem;
+          padding-right: 2rem;
+          border-right: 1px solid rgba(255, 255, 255, 0.54);
+        }
+      }
+
+      .cart {
+        display: flex;
+        align-items: center;
+        padding-right: 0;
+        border-right: none;
+        color: white;
+        margin-right: 1rem;
+        margin-left: 1rem;
+
+        &>* {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+
+  &-bottom {
+    color: white;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    font-family: 'Playfair Display', 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.4rem;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.205);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.205);
+    letter-spacing: 1px;
+
+    .categories {
+      justify-self: flex-end;
+      display: flex;
+
+      .browse {
+        font-weight: initial;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      &>* {
+        padding-right: 2rem;
+        margin-right: 2rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.205);
+      }
+
+    }
+
+    .contact {
+      justify-self: center;
+      display: flex;
+
+      &>* {
+        padding-right: 2rem;
+        margin-right: 2rem;
+      }
+    }
+  }
+}
