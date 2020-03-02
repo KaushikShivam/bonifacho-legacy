@@ -4,6 +4,7 @@ import React from 'react';
 import Hero from './layout/Hero/Hero';
 import ArtworkWeek from './layout/ArtworkWeek/ArtworkWeek';
 import ArtistWeek from './layout/ArtistWeek/ArtistWeek';
+import CollectionPreview from './layout/CollectionPreview/CollectionPreview';
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Hero />
       <ArtworkWeek />
       <ArtistWeek />
+      <CollectionPreview />
     </div>
   );
 };
