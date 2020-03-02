@@ -1,0 +1,35 @@
+.Mailer {
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  padding: 8rem 10rem;
+  font-family: 'Playfair Display', 'Courier New', Courier, monospace;
+  column-gap: 3rem;
+
+
+  &-content {
+    text-align: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      font-weight: bold;
+      font-size: 4.2rem;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 1.6rem;
+      width: 70%;
+    }
+  }
+
+  &-email {
+    text-align: center;
+  }
+}
