@@ -1,0 +1,38 @@
+.ArtworkBig {
+
+  &-img img {
+    height: 100%;
+    width: 100%;
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  &-title {
+    font-family: 'Playfair Display', 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  &-author {
+    font-family: 'Montserrat', 'Courier New', Courier, monospace;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 5px;
+  }
+
+  &-detail {
+    align-self: flex-start;
+    display: flex;
+  }
+
+  &-price {
+    font-family: 'Montserrat', 'Courier New', Courier, monospace;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 1.8rem;
+    margin-left: 1rem;
+  }
+}
