@@ -1,0 +1,34 @@
+.FineArt {
+  padding: 13rem 10rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-family: 'Playfair Display', 'Courier New', Courier, monospace;
+  column-gap: 2rem;
+
+  &-img {
+    align-self: flex-start;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+
+
+  &-content {
+    padding: 3rem;
+
+    h2 {
+      font-size: 4.2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 1.6rem;
+      margin-bottom: 4rem;
+    }
+  }
+
+}
