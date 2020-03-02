@@ -1,0 +1,24 @@
+.ArtworkWeek {
+  padding: 10rem 17rem;
+
+  &-title {
+    font-family: 'Playfair Display', 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 4.2rem;
+    margin-bottom: 5rem;
+    text-align: center;
+  }
+
+  &-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 4rem;
+    margin: 0 auto;
+  }
+
+  &-link {
+    width: 100%;
+    text-align: center;
+    margin-top: 4rem;
+  }
+}
