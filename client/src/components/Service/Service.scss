@@ -1,26 +1,19 @@
-import React from 'react';
-import './Service.scss';
+.Service {
+  font-family: 'Playfair Display', 'Courier New', Courier, monospace;
+  text-align: center;
+  padding: 0 3rem;
+  margin: 0 3rem;
 
-const Service=( {
-    icon, title, description
+  h4 {
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-top: 2.4rem;
+    margin-bottom: 1rem;
   }
 
-)=> {
-  return (<div className='Service'> <img src= {
-      icon
-    }
-
-    alt='icon'/> <h4> {
-      title
-    }
-
-    </h4> <p> {
-      description
-    }
-
-    </p> </div>);
+  p {
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.5);
+  }
 }
-
-;
-
-export default Service;

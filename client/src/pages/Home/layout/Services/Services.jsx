@@ -1,7 +1,7 @@
 import React from 'react';
 import './Services.scss';
 
-// import Service from '../../components/Service/Service';
+import Service from './../../../../components/Service/Service';
 import cartIcon from './../../../../assets/cartIcon.png';
 import paymentIcon from './../../../../assets/paymentIcon.png';
 import phoneIcon from './../../../../assets/phoneIcon.png';
@@ -9,7 +9,7 @@ import phoneIcon from './../../../../assets/phoneIcon.png';
 const Services = () => {
   return (
     <div className="Services">
-      {/* <Service
+      <Service
         icon={phoneIcon}
         title="Customer Service"
         description="+91-9711112922"
@@ -23,7 +23,7 @@ const Services = () => {
         icon={paymentIcon}
         title="Secure Payment"
         description="Rest assurared about paying online"
-      /> */}
+      />
     </div>
   );
 };
