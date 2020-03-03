@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.scss';
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import { ReactComponent as Logo } from './../../assets/logo.svg';
 
 const Footer = () => {
   return (
