@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './ArtworkWeek.scss';
 
 import ArtworkBig from './../../../../components/ArtworkBig/ArtworkBig';

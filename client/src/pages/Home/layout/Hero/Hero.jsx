@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Hero.scss';
 import heroBg from './../../../../assets/heroBg.png';
 
