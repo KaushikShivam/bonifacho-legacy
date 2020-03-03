@@ -1,10 +1,10 @@
 import React from 'react';
 import './Services.scss';
 
-import Service from '../../components/Service/Service';
-import cartIcon from '../../assets/cartIcon.png';
-import paymentIcon from '../../assets/paymentIcon.png';
-import phoneIcon from '../../assets/phoneIcon.png';
+// import Service from '../../components/Service/Service';
+import cartIcon from './../../../../assets/cartIcon.png';
+import paymentIcon from './../../../../assets/paymentIcon.png';
+import phoneIcon from './../../../../assets/phoneIcon.png';
 
 const Services = () => {
   return (

@@ -7,6 +7,7 @@ import ArtistWeek from './layout/ArtistWeek/ArtistWeek';
 import CollectionPreview from './layout/CollectionPreview/CollectionPreview';
 import Mailer from './layout/Mailer/Mailer';
 import FineArt from './layout/FineArt/FineArt';
+import Services from './layout/Services/Services';
 
 const Home = () => {
   return (
@@ -20,6 +21,7 @@ const Home = () => {
       <CollectionPreview />
       <Mailer />
       <FineArt />
+      <Services />
     </div>
   );
 };
