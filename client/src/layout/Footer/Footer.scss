@@ -1,0 +1,47 @@
+.Footer {
+  background-color: black;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 5rem 10rem;
+  font-family: 'Playfair Display', 'Courier New', Courier, monospace;
+
+  .link {
+    text-decoration: none;
+    color: white;
+    transition: all .2s;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(70%);
+    }
+  }
+
+  &-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 3rem;
+
+    h4 {
+      font-size: 2.4rem;
+      margin: 0 5rem;
+    }
+  }
+
+  &-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+
+    .links {
+      display: flex;
+      justify-content: space-between;
+
+      &>* {
+        margin-left: 3rem;
+      }
+    }
+  }
+}
