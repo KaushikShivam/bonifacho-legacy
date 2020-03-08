@@ -8,4 +8,6 @@ router
   .get(artworkController.getAllArtworks)
   .post(artworkController.createArtwork);
 
+router.route('/:id').get(artworkController.getArtwork);
+
 module.exports = router;
