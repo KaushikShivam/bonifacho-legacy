@@ -12,6 +12,9 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// body parser
+app.use(express.json({ limit: '10kb' }));
+
 // mounting the routes
 app.use('/api/v1/artworks', artworkRouter);
 
