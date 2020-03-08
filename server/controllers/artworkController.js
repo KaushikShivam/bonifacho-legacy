@@ -60,3 +60,35 @@ exports.getArtwork = async (req, res, next) => {
     });
   }
 };
+
+exports.updateArtwork = async (req, res, next) => {
+  try {
+    const artwork = await Artwork.findByIdAndUpdate(req.params.id, req.body, {
+      runValidators: true,
+      new: true
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        artwork
+      }
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err
+    });
+  }
+};
+
+exports.deleteArtwork = async (req, res, next) => {
+  try {
+    await Artwork.findByIdAndDelete(req.params.id);
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err
+    });
+  }
+};
