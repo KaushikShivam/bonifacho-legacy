@@ -35,3 +35,28 @@ exports.createArtwork = async (req, res, next) => {
     });
   }
 };
+
+exports.getArtwork = async (req, res, next) => {
+  try {
+    const artwork = await Artwork.findById(req.params.id);
+
+    if (!artwork) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'Artwork with this ID not found'
+      });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        artwork
+      }
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err
+    });
+  }
+};
