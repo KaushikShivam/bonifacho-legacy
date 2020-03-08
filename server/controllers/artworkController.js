@@ -85,6 +85,11 @@ exports.updateArtwork = async (req, res, next) => {
 exports.deleteArtwork = async (req, res, next) => {
   try {
     await Artwork.findByIdAndDelete(req.params.id);
+
+    res.status(204).json({
+      status: 'success',
+      data: null
+    });
   } catch (err) {
     res.status(400).json({
       status: 'fail',

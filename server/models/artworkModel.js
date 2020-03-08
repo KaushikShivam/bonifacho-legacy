@@ -5,7 +5,9 @@ const artworkSchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, 'An artwork must have a name'],
-      minlength: [10, "Artwork's name must be atleast 10 characters long"]
+      minlength: [10, "Artwork's name must be atleast 10 characters long"],
+      trim: true,
+      unique: true
     },
     edition: {
       type: String,
@@ -21,7 +23,8 @@ const artworkSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: [true, 'An Artwork must have a category']
+      required: [true, 'An Artwork must have a category'],
+      trim: true
     },
     image: {
       type: String,
