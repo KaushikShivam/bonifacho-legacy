@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const artworkSchema = new mongoose.Schema(
   {
@@ -31,7 +32,8 @@ const artworkSchema = new mongoose.Schema(
     image: {
       type: String,
       required: [true, 'An Artwork must have an image']
-    }
+    },
+    slug: String
   },
   {
     timestamps: true,
@@ -39,6 +41,11 @@ const artworkSchema = new mongoose.Schema(
     toObject: { virtuals: true }
   }
 );
+
+artworkSchema.pre('save', function(next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
+});
 
 const Artwork = mongoose.model('Artwork', artworkSchema);
 
