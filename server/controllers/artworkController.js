@@ -12,6 +12,23 @@ exports.getAllArtworks = async (req, res, next) => {
       }
     });
   } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err
+    });
+  }
+};
+
+exports.createArtwork = async (req, res, next) => {
+  try {
+    const artwork = await Artwork.create(req.body);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        artwork
+      }
+    });
+  } catch (err) {
     res.status(400).json({
       status: 'fail',
       message: err
