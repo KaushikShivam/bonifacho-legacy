@@ -14,7 +14,8 @@ const artworkSchema = new mongoose.Schema(
       required: [true, 'An Artwork must have an edition'],
       enum: {
         values: ['original', 'limited'],
-        message: 'Edition can either be Limited or Original'
+        message: 'Edition can either be Limited or Original',
+        lowercase: true
       }
     },
     price: {
@@ -24,7 +25,8 @@ const artworkSchema = new mongoose.Schema(
     category: {
       type: String,
       required: [true, 'An Artwork must have a category'],
-      trim: true
+      trim: true,
+      lowercase: true
     },
     image: {
       type: String,
