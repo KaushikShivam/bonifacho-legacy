@@ -1,5 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const hpp = require('hpp');
 
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/AppError');
@@ -15,10 +20,29 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// Rate limiter
+const limiter = rateLimit({
+  max: 100, // maximum requests
+  windowMs: 60 * 60 * 1000, // in how many hours?
+  message: 'Too many requests from this IP. Please try again in an hour'
+});
+
+// Helmet package for headers
+app.use(helmet());
+
+// Only limiting our api
+app.use('/api', limiter);
+
 app.use((req, res, next) => {
   console.log(process.env.NODE_ENV);
   next();
 });
+
+// Data sanitization against NoSql query injection
+// will look at request body, params and query string and filter out all of the dollar signs and dots
+app.use(mongoSanitize());
+// Data sanitization against cross site scripting attacks
+app.use(xss());
 
 // body parser
 app.use(express.json({ limit: '10kb' }));
@@ -26,6 +50,9 @@ app.use(express.json({ limit: '10kb' }));
 // mounting the routes
 app.use('/api/v1/artworks', artworkRouter);
 app.use('/api/v1/users', userRouter);
+
+//Prevent parameter pollution
+app.use(hpp());
 
 // Handle unhandled rejections
 app.all('*', (req, res, next) => {
