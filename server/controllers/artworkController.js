@@ -1,7 +1,7 @@
 const Artwork = require('./../models/artworkModel');
 
-const catchAsync = require('./../../utils/catchAsync');
-const AppError = require('./../../utils/AppError');
+const catchAsync = require('./../utils/catchAsync');
+const AppError = require('./../utils/AppError');
 
 exports.getAllArtworks = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Model.find(filter), req.query)

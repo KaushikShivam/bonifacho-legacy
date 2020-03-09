@@ -2,9 +2,10 @@ const express = require('express');
 const morgan = require('morgan');
 
 const globalErrorHandler = require('./controllers/errorController');
-const AppError = require('./../utils/AppError');
+const AppError = require('./utils/AppError');
 // import routers
 const artworkRouter = require('./routes/artworkRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(express.json({ limit: '10kb' }));
 
 // mounting the routes
 app.use('/api/v1/artworks', artworkRouter);
+app.use('/api/v1/users', userRouter);
 
 // Handle unhandled rejections
 app.all('*', (req, res, next) => {
