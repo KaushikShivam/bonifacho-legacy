@@ -18,6 +18,7 @@ app.use(express.json({ limit: '10kb' }));
 // mounting the routes
 app.use('/api/v1/artworks', artworkRouter);
 
+// Handle unhandled rejections
 app.all('*', (req, res, next) => {
   res.status(404).json({
     status: 'fail',
