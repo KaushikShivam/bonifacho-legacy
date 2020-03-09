@@ -94,6 +94,12 @@ userSchema.methods.createPasswordResetToken = function() {
   return resetToken;
 };
 
+userSchema.virtual('artworks', {
+  ref: 'Artwork',
+  foreignField: 'artist',
+  localField: '_id'
+});
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
