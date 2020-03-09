@@ -24,7 +24,9 @@ exports.getAllArtworks = catchAsync(async (req, res, next) => {
 });
 
 exports.createArtwork = catchAsync(async (req, res, next) => {
-  const artwork = await Artwork.create(req.body);
+  const reqBody = { ...req.body, artist: req.user.id };
+
+  const artwork = await Artwork.create(reqBody);
 
   res.status(201).json({
     status: 'success',
