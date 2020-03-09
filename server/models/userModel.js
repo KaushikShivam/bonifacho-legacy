@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
@@ -31,7 +32,14 @@ const userSchema = new mongoose.Schema({
       message: 'Password and password confirm does not match'
     }
   },
-  passwordChangedAt: Date
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
+  active: {
+    type: Boolean,
+    default: true,
+    select: false
+  }
 });
 
 userSchema.pre('save', async function(next) {
@@ -50,10 +58,7 @@ userSchema.methods.correctPassword = async function(
 };
 
 userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
-  // Most of the users won't have the passwordChangedAt property
-  // Only do the comparison if the passwordChangedAt exists, otheriwse just return false
   if (this.passwordChangedAt) {
-    // timestamp will be in millisecond timestamp so we need to convert passwordChangedAt (Date) to timestamp
     const changedTimestamp = parseInt(
       this.passwordChangedAt.getTime() / 1000,
       10
@@ -63,6 +68,17 @@ userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
 
   // False means not changed
   return false;
+};
+
+userSchema.methods.createPasswordResetToken = function() {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+  return resetToken;
 };
 
 const User = mongoose.model('User', userSchema);
