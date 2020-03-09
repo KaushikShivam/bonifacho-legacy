@@ -29,7 +29,8 @@ const userSchema = new mongoose.Schema({
       },
       message: 'Password and password confirm does not match'
     }
-  }
+  },
+  passwordChangedAt: Date
 });
 
 userSchema.pre('save', async function(next) {
