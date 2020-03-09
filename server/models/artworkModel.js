@@ -10,6 +10,11 @@ const artworkSchema = new mongoose.Schema(
       trim: true,
       unique: true
     },
+    creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: [true, 'An Artwork must always have a creator']
+    },
     edition: {
       type: String,
       required: [true, 'An Artwork must have an edition'],
