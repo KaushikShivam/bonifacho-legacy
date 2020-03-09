@@ -47,6 +47,22 @@ userSchema.methods.correctPassword = async function(
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
+userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
+  // Most of the users won't have the passwordChangedAt property
+  // Only do the comparison if the passwordChangedAt exists, otheriwse just return false
+  if (this.passwordChangedAt) {
+    // timestamp will be in millisecond timestamp so we need to convert passwordChangedAt (Date) to timestamp
+    const changedTimestamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    ); // millisecond
+    return JWTTimestamp < changedTimestamp;
+  }
+
+  // False means not changed
+  return false;
+};
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
