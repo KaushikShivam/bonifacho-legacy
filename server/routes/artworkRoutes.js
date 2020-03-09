@@ -1,11 +1,12 @@
 const express = require('express');
 const artworkController = require('./../controllers/artworkController');
+const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
 router
   .route('/')
-  .get(artworkController.getAllArtworks)
+  .get(authController.protect, artworkController.getAllArtworks)
   .post(artworkController.createArtwork);
 
 router

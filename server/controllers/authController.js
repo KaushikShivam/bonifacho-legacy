@@ -46,7 +46,7 @@ exports.login = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.protect = catchAsync(async (res, res, next) => {
+exports.protect = catchAsync(async (req, res, next) => {
   // 1. Get token if it exists
   let token;
   if (
