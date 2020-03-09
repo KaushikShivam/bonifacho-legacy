@@ -50,6 +50,19 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
+userSchema.pre('save', function(next) {
+  // return if the password was not modified or not created the first time
+  if (!this.isModified('password') || this.isNew) return next();
+
+  this.passwordChangedAt = Date.now() - 1000; // doing 1 second before as a safety measure
+  next();
+});
+
+userSchema.pre(/^find/, function(next) {
+  this.find({ active: { $ne: false } });
+  next();
+});
+
 userSchema.methods.correctPassword = async function(
   candidatePassword,
   userPassword
