@@ -13,6 +13,14 @@ mongoose
   })
   .then(() => console.log('DB connected'));
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server started on PORT ${PORT}`);
+});
+
+process.on('unhandledRejection', err => {
+  console.log(err.name, err.message);
+  console.log('UNHANDLED REJECTION');
+  server.close(() => {
+    process.exit(1);
+  });
 });
