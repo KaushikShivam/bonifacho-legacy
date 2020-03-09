@@ -1,6 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const globalErrorHandler = require('./controllers/errorController');
+const AppError = require('./../utils/AppError');
 // import routers
 const artworkRouter = require('./routes/artworkRoutes');
 
@@ -20,21 +22,10 @@ app.use('/api/v1/artworks', artworkRouter);
 
 // Handle unhandled rejections
 app.all('*', (req, res, next) => {
-  const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-  err.statusCode = 404;
-  err.status = 'fail';
-
-  next(err);
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
 // Global error handling middleware
-app.use((err, req, res, next) => {
-  err.statusCode = err.statusCode || 500; // 500 is the standard. Internal server error
-  err.status = err.status || 'error'; // error is when we have errors starting from 5, it's fail when it comes from 400
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message
-  });
-});
+app.use(globalErrorHandler);
 
 module.exports = app;
