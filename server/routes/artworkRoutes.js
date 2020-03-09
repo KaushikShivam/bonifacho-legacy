@@ -6,8 +6,12 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(authController.protect, artworkController.getAllArtworks)
-  .post(artworkController.createArtwork);
+  .get(artworkController.getAllArtworks)
+  .post(
+    authController.protect,
+    authController.restrictTo('artist'),
+    artworkController.createArtwork
+  );
 
 router
   .route('/:id')

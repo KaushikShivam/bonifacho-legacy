@@ -10,10 +10,10 @@ const artworkSchema = new mongoose.Schema(
       trim: true,
       unique: true
     },
-    creator: {
+    artist: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: [true, 'An Artwork must always have a creator']
+      required: [true, 'An Artwork must always have a artist']
     },
     edition: {
       type: String,
@@ -49,6 +49,11 @@ const artworkSchema = new mongoose.Schema(
 
 artworkSchema.pre('save', function(next) {
   this.slug = slugify(this.name, { lower: true });
+  next();
+});
+
+artworkSchema.pre(/^find/, function(next) {
+  this.populate({ path: 'artist', select: 'name photo' });
   next();
 });
 
