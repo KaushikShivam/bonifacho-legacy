@@ -14,7 +14,14 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email']
   },
-  role: ['artist', 'collector'],
+  role: {
+    type: String,
+    enum: {
+      values: ['artist', 'collector'],
+      message: 'You can either be an Artist or Collector'
+    },
+    lowercase: true
+  },
   photo: String,
   password: {
     type: String,
