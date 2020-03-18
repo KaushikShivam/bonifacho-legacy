@@ -47,6 +47,10 @@ app.use(xss());
 // body parser
 app.use(express.json({ limit: '10kb' }));
 
+app.use((req, res, next) => {
+  console.log('server middleware');
+});
+
 // mounting the routes
 app.use('/api/v1/artworks', artworkRouter);
 app.use('/api/v1/users', userRouter);
