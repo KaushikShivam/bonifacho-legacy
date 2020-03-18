@@ -1,0 +1,6 @@
+  .AuthPage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10rem;
+    padding: 10rem 10rem;
+  }
