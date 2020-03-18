@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import './SignUp.scss';
 
 import FormButton from '../FormButton/FormButton';
-import FormInput from '../FormInput/FormInput';
-
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+import FormInput from './../FormInput/FormInput';
 
 class SignUp extends Component {
   constructor() {
@@ -26,24 +24,6 @@ class SignUp extends Component {
     if (password !== confirmPassword) {
       alert("passwords don't match");
       return;
-    }
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      await createUserProfileDocument(user, { displayName });
-
-      this.setState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      });
-    } catch (error) {
-      console.error(error);
     }
   };
 
