@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import './SignUp.scss';
 
 import FormButton from '../FormButton/FormButton';
@@ -8,7 +9,7 @@ import FormInput from './../FormInput/FormInput';
 import { setAlert } from './../../redux/actions/alert';
 import { registerUser } from './../../redux/actions/auth';
 
-const SignUp = ({ setAlert, registerUser }) => {
+const SignUp = ({ setAlert, registerUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,9 +29,13 @@ const SignUp = ({ setAlert, registerUser }) => {
     if (password !== passwordConfirm) {
       setAlert('Passwords do not match', 'error');
     }
-    console.log(formData);
     registerUser(formData);
   };
+
+  //Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="SignUp">
@@ -90,4 +95,8 @@ const mapDispatchToProps = dispatch => ({
   registerUser: body => dispatch(registerUser(body))
 });
 
-export default connect(null, mapDispatchToProps)(SignUp);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -1,60 +1,73 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import './Login.scss';
 
 import FormInput from './../FormInput/FormInput';
 import FormButton from '../../components/FormButton/FormButton';
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: ''
-    };
-  }
+import { loginUser } from './../../redux/actions/auth';
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+const Login = ({ loginUser, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const { email, password } = formData;
+
+  const handleChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    loginUser(formData);
   };
 
-  handleSubmit = async event => {
-    event.preventDefault();
-  };
-
-  render() {
-    return (
-      <div className="Login">
-        <h2 className="Login-title">I already have an account</h2>
-        <span className="Login-subtitle">
-          Sign in with your email and password
-        </span>
-        <form onSubmit={this.handleSubmit}>
-          <FormInput
-            name="email"
-            type="email"
-            value={this.state.email}
-            handleChange={this.handleChange}
-            label="email"
-            required
-          />
-          <FormInput
-            name="password"
-            type="password"
-            value={this.state.password}
-            handleChange={this.handleChange}
-            label="password"
-            required
-          />
-
-          <div className="buttons">
-            <FormButton type="submit">Sign in</FormButton>
-          </div>
-        </form>
-      </div>
-    );
+  //Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
   }
-}
 
-export default Login;
+  return (
+    <div className="Login">
+      <h2 className="Login-title">I already have an account</h2>
+      <span className="Login-subtitle">
+        Sign in with your email and password
+      </span>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          name="email"
+          type="email"
+          value={email}
+          handleChange={handleChange}
+          label="email"
+          required
+        />
+        <FormInput
+          name="password"
+          type="password"
+          value={password}
+          handleChange={handleChange}
+          label="password"
+          required
+        />
+
+        <div className="buttons">
+          <FormButton type="submit">Sign in</FormButton>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+const mapDispatchToProps = dispatch => ({
+  loginUser: body => dispatch(loginUser(body))
+});
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -38,6 +38,7 @@ export const registerUser = body => async dispatch => {
     const res = await axios.post('/api/v1/users/signup', body);
 
     dispatch({ type: REGISTER_SUCCESS, payload: res.data.token });
+    dispatch(loadUser());
   } catch (err) {
     dispatch(setAlert(err.response.data.message, 'error'));
 
@@ -53,6 +54,7 @@ export const loginUser = body => async dispatch => {
     const res = await axios.post('/api/v1/users/login', body);
 
     dispatch({ type: LOGIN_SUCCESS, payload: res.data.token });
+    dispatch(loadUser());
   } catch (err) {
     dispatch(setAlert(err.response.data.message, 'error'));
 

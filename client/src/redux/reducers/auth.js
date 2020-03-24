@@ -2,7 +2,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL
 } from './../actions/types';
 
 const INITIAL_STATE = {
@@ -16,6 +18,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem('jwt', payload);
       return {
         ...state,
@@ -24,6 +27,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         loading: false
       };
     case REGISTER_FAIL:
+    case LOGIN_FAIL:
     case AUTH_ERROR:
       localStorage.removeItem('jwt');
       return { ...state, token: null, isAuthenticated: false, loading: false };
