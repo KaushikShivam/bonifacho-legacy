@@ -86,4 +86,8 @@ const SignUp = ({ createSnackbar, setAlert }) => {
   );
 };
 
-export default connect(null, { setAlert })(wrapComponent(SignUp));
+const mapDispatchToProps = dispatch => ({
+  setAlert: () => dispatch(setAlert)
+});
+
+export default connect(mapDispatchToProps, { setAlert })(wrapComponent(SignUp));
