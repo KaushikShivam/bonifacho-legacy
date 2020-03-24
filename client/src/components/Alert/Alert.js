@@ -4,7 +4,7 @@ import { wrapComponent } from 'react-snackbar-alert';
 
 const Alert = ({ alert, createSnackbar }) => {
   useEffect(() => {
-    if (alert) {
+    if (alert.message) {
       createSnackbar({
         message: alert.message,
         theme: alert.type
