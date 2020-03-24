@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { wrapComponent } from 'react-snackbar-alert';
+import { connect } from 'react-redux';
 import './SignUp.scss';
 
 import FormButton from '../FormButton/FormButton';
 import FormInput from './../FormInput/FormInput';
 
-const SignUp = () => {
+import { setAlert } from './../../redux/actions/alert';
+
+const SignUp = ({ createSnackbar, setAlert }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,7 +26,7 @@ const SignUp = () => {
     e.preventDefault();
 
     if (password !== passwordConfirm) {
-      alert("passwords don't match");
+      setAlert('Passwords do not match', 'error');
       return;
     }
 
@@ -82,4 +86,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default connect(null, { setAlert })(wrapComponent(SignUp));
