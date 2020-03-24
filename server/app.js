@@ -33,11 +33,6 @@ app.use(helmet());
 // Only limiting our api
 app.use('/api', limiter);
 
-app.use((req, res, next) => {
-  console.log(process.env.NODE_ENV);
-  next();
-});
-
 // Data sanitization against NoSql query injection
 // will look at request body, params and query string and filter out all of the dollar signs and dots
 app.use(mongoSanitize());
@@ -47,9 +42,9 @@ app.use(xss());
 // body parser
 app.use(express.json({ limit: '10kb' }));
 
-app.use((req, res, next) => {
-  console.log('server middleware');
-});
+// app.use((req, res, next) => {
+//   console.log('server middleware');
+// });
 
 // mounting the routes
 app.use('/api/v1/artworks', artworkRouter);

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { wrapComponent } from 'react-snackbar-alert';
 import { connect } from 'react-redux';
 import './SignUp.scss';
 
@@ -7,8 +6,9 @@ import FormButton from '../FormButton/FormButton';
 import FormInput from './../FormInput/FormInput';
 
 import { setAlert } from './../../redux/actions/alert';
+import { registerUser } from './../../redux/actions/auth';
 
-const SignUp = ({ createSnackbar, setAlert }) => {
+const SignUp = ({ setAlert, registerUser }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,10 +27,9 @@ const SignUp = ({ createSnackbar, setAlert }) => {
 
     if (password !== passwordConfirm) {
       setAlert('Passwords do not match', 'error');
-      return;
     }
-
     console.log(formData);
+    registerUser(formData);
   };
 
   return (
@@ -87,7 +86,8 @@ const SignUp = ({ createSnackbar, setAlert }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  setAlert: () => dispatch(setAlert)
+  setAlert: (status, message) => dispatch(setAlert(status, message)),
+  registerUser: body => dispatch(registerUser(body))
 });
 
-export default connect(mapDispatchToProps, { setAlert })(wrapComponent(SignUp));
+export default connect(null, mapDispatchToProps)(SignUp);

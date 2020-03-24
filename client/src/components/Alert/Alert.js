@@ -10,7 +10,7 @@ const Alert = ({ alert, createSnackbar }) => {
         theme: alert.type
       });
     }
-  }, [alert]);
+  }, [alert, createSnackbar]);
 
   return <></>;
 };
