@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { SnackbarProvider } from 'react-snackbar-alert';
 import './App.css';
 
@@ -9,7 +10,18 @@ import Home from './pages/Home/Home';
 import Auth from './pages/Auth/Auth';
 import Alert from './components/Alert/Alert';
 
-const App = () => {
+import { loadUser } from './redux/actions/auth';
+import setAuthToken from './utils/setAuthToken';
+
+if (localStorage.jwt) {
+  setAuthToken(localStorage.jwt);
+}
+
+const App = ({ loadUser }) => {
+  useEffect(() => {
+    loadUser();
+  }, [loadUser]);
+
   return (
     <SnackbarProvider>
       <div className="App">
@@ -25,4 +37,8 @@ const App = () => {
   );
 };
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  loadUser: () => dispatch(loadUser())
+});
+
+export default connect(null, mapDispatchToProps)(App);
