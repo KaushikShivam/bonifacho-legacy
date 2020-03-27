@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const path = require('path');
 
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/AppError');
@@ -42,16 +43,21 @@ app.use(xss());
 // body parser
 app.use(express.json({ limit: '10kb' }));
 
-// app.use((req, res, next) => {
-//   console.log('server middleware');
-// });
+//Prevent parameter pollution
+app.use(hpp());
 
 // mounting the routes
 app.use('/api/v1/artworks', artworkRouter);
 app.use('/api/v1/users', userRouter);
 
-//Prevent parameter pollution
-app.use(hpp());
+// SERVER static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  });
+}
 
 // Handle unhandled rejections
 app.all('*', (req, res, next) => {
