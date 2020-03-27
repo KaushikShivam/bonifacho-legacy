@@ -6,7 +6,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT
 } from './types';
 import { setAlert } from './alert';
 
@@ -63,3 +64,8 @@ export const loginUser = body => async dispatch => {
     });
   }
 };
+
+// Logout / Clear profile
+export const logout = dispatch => ({
+  type: LOGOUT
+});

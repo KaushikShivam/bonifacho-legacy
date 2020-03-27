@@ -4,7 +4,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT
 } from './../actions/types';
 
 const INITIAL_STATE = {
@@ -29,6 +30,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case REGISTER_FAIL:
     case LOGIN_FAIL:
     case AUTH_ERROR:
+    case LOGOUT:
       localStorage.removeItem('jwt');
       return { ...state, token: null, isAuthenticated: false, loading: false };
     case USER_LOADED:

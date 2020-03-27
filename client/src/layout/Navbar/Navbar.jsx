@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './Navbar.scss';
@@ -8,8 +9,9 @@ import cart from '../../assets/cart.png';
 import phoneIcon from '../../assets/phoneGreen.png';
 import searchInput from '../../assets/searchInput.png';
 
-const Navbar = () => {
-  const currentUser = false;
+import { logout } from './../../redux/actions/auth';
+
+const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <div className="Navbar">
       <div className="Navbar-main">
@@ -30,20 +32,23 @@ const Navbar = () => {
         </Link>
         {/* Right */}
         <div className="Navbar-main-right">
-          {currentUser ? (
-            <div className="login">
-              <p className="signin">LOG OUT</p>
-            </div>
-          ) : (
-            <div className="login">
-              <Link to="/auth" className="signin">
-                SIGN IN
+          {!loading &&
+            (isAuthenticated ? (
+              <div className="login">
+                <p onClick={logout} className="signin">
+                  LOG OUT
+                </p>
+              </div>
+            ) : (
+              <Link className="login">
+                <Link to="/auth" className="signin">
+                  SIGN IN
+                </Link>
+                <Link to="/auth" className="register">
+                  REGISTER
+                </Link>
               </Link>
-              <Link to="/auth" className="register">
-                REGISTER
-              </Link>
-            </div>
-          )}
+            ))}
           <div className="cart">
             <img src={`${cart}`} alt="Cart" />
             <span>8</span>
@@ -65,4 +70,12 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logout())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
