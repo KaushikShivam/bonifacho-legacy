@@ -20,9 +20,9 @@ const artworkSchema = new mongoose.Schema(
       required: [true, 'An Artwork must have an edition'],
       enum: {
         values: ['original', 'limited'],
-        message: 'Edition can either be Limited or Original',
-        lowercase: true
-      }
+        message: 'Edition can either be Limited or Original'
+      },
+      lowercase: true
     },
     price: {
       type: Number,

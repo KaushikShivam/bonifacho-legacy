@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 import './ArtworkForm.scss';
 
 import FormInput from './../FormInput/FormInput';
 import FormButton from './../FormButton/FormButton';
 
-const ArtworkForm = () => {
+import { createArtwork } from './../../redux/actions/artwork';
+
+const ArtworkForm = ({ createArtwork }) => {
   const [formData, setFormData] = useState({
     name: '',
     edition: '',
@@ -22,7 +25,15 @@ const ArtworkForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const reqBody = { ...formData, price: parseInt(price) };
-    console.log(reqBody);
+    createArtwork(reqBody).then(() =>
+      setFormData({
+        name: '',
+        edition: '',
+        price: '',
+        category: '',
+        image: ''
+      })
+    );
   };
 
   return (
@@ -76,4 +87,8 @@ const ArtworkForm = () => {
   );
 };
 
-export default ArtworkForm;
+const mapDispatchToProps = dispatch => ({
+  createArtwork: body => dispatch(createArtwork(body))
+});
+
+export default connect(null, mapDispatchToProps)(ArtworkForm);
