@@ -4,9 +4,10 @@ const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
-router.route(
+router.get(
   '/get-my-artworks',
   authController.protect,
+  authController.restrictTo('artist'),
   artworkController.getMyArtworks,
   artworkController.getAllArtworks
 );

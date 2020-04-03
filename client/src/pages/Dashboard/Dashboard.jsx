@@ -3,6 +3,7 @@ import React from 'react';
 import './Dashboard.scss';
 
 import ArtworkForm from './../../components/ArtworkForm/ArtworkForm';
+import MyArtworks from './../../components/MyArtworks/MyArtworks';
 
 const Dashboard = () => {
   return (
@@ -11,7 +12,8 @@ const Dashboard = () => {
         <button>Create New</button>
       </nav>
       <div className="Dashboard__container">
-        <ArtworkForm />
+        {/* <ArtworkForm /> */}
+        <MyArtworks />
       </div>
     </main>
   );

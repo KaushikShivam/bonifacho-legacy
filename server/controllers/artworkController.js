@@ -24,7 +24,7 @@ exports.getAllArtworks = catchAsync(async (req, res, next) => {
 });
 
 exports.getMyArtworks = (req, res, next) => {
-  req.query.user = req.user.id;
+  req.query.artist = req.user.id;
   next();
 };
 

@@ -37,7 +37,7 @@ const ArtworkForm = ({ createArtwork }) => {
   };
 
   return (
-    <div className="ArtworkForm">
+    <main className="ArtworkForm">
       <h2 className="ArtworkForm__title">Create Your Artwork</h2>
       <span className="ArtworkForm__subtitle">All fileds are mandatory</span>
       <form onSubmit={handleSubmit}>
@@ -83,7 +83,7 @@ const ArtworkForm = ({ createArtwork }) => {
         />
         <FormButton type="submit">Create</FormButton>
       </form>
-    </div>
+    </main>
   );
 };
 
