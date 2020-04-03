@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './Login.scss';
 
-import FormInput from './../FormInput/FormInput';
+import FormInput from '../../components/FormInput/FormInput';
 import FormButton from '../../components/FormButton/FormButton';
 
-import { loginUser } from './../../redux/actions/auth';
+import { loginUser } from '../../redux/actions/auth';
 
 const Login = ({ loginUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -32,7 +32,7 @@ const Login = ({ loginUser, isAuthenticated }) => {
 
   return (
     <div className="Login">
-      <h2 className="Login-title">I already have an account</h2>
+      <h2 className="Login-title">Sign In</h2>
       <span className="Login-subtitle">
         Sign in with your email and password
       </span>

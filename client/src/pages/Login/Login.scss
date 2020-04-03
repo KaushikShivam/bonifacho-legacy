@@ -1,0 +1,27 @@
+.Login {
+  font-family: 'Montserrat', 'Courier New', Courier, monospace;
+  padding: 8rem 8rem;
+  width: 50%;
+  margin: 0 auto;
+
+  &-title {
+    font-size: 3rem;
+    color: black;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  &-subtitle {
+    font-size: 1.8rem;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-start;
+
+    & > * {
+      margin-right: 2rem;
+    }
+  }
+}

@@ -8,6 +8,7 @@ import Navbar from './layout/Navbar/Navbar';
 import Footer from './layout/Footer/Footer';
 import Home from './pages/Home/Home';
 import SignUp from './pages/SignUp/SignUp';
+import Login from './pages/Login/Login';
 import Alert from './components/Alert/Alert';
 
 import { loadUser } from './redux/actions/auth';
@@ -30,6 +31,7 @@ const App = ({ loadUser }) => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
         </Switch>
         <Footer />
       </div>
