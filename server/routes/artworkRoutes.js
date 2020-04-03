@@ -4,6 +4,13 @@ const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
+router.route(
+  '/get-my-artworks',
+  authController.protect,
+  artworkController.getMyArtworks,
+  artworkController.getAllArtworks
+);
+
 router
   .route('/')
   .get(artworkController.getAllArtworks)

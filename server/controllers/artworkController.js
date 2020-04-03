@@ -23,6 +23,11 @@ exports.getAllArtworks = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getMyArtworks = (req, res, next) => {
+  req.query.user = req.user.id;
+  next();
+};
+
 exports.createArtwork = catchAsync(async (req, res, next) => {
   const reqBody = { ...req.body, artist: req.user.id };
 
