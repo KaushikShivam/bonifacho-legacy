@@ -42,7 +42,7 @@ const Login = ({ loginUser, isAuthenticated }) => {
           type="email"
           value={email}
           handleChange={handleChange}
-          label="email"
+          label="Email"
           required
         />
         <FormInput
@@ -50,7 +50,7 @@ const Login = ({ loginUser, isAuthenticated }) => {
           type="password"
           value={password}
           handleChange={handleChange}
-          label="password"
+          label="Password"
           required
         />
 

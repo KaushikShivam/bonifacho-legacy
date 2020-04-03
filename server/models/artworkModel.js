@@ -52,10 +52,10 @@ artworkSchema.pre('save', function(next) {
   next();
 });
 
-artworkSchema.pre(/^find/, function(next) {
-  this.populate({ path: 'artist', select: 'name photo' });
-  next();
-});
+// artworkSchema.pre(/^find/, function(next) {
+//   this.populate({ path: 'artist', select: 'name photo' });
+//   next();
+// });
 
 const Artwork = mongoose.model('Artwork', artworkSchema);
 
