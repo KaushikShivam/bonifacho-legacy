@@ -10,8 +10,10 @@ import Home from './pages/Home/Home';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import Alert from './components/Alert/Alert';
+import Dashboard from './pages/Dashboard/Dashboard';
 
-// import PrivateRoute from './routing/PrivateRoute/pr';
+import AdminRoute from './routing/AdminRoute';
+import PrivateRoute from './routing/PrivateRoute';
 
 import { loadUser } from './redux/actions/auth';
 import setAuthToken from './utils/setAuthToken';
@@ -34,7 +36,7 @@ const App = ({ loadUser }) => {
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
-          <PrivateRoute exact path="/login" component={Login} />
+          <AdminRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
         <Footer />
       </div>
