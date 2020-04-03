@@ -19,11 +19,17 @@ const ArtworkForm = () => {
   const handleChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    const reqBody = { ...formData, price: parseInt(price) };
+    console.log(reqBody);
+  };
+
   return (
     <div className="ArtworkForm">
       <h2 className="ArtworkForm__title">Create Your Artwork</h2>
       <span className="ArtworkForm__subtitle">All fileds are mandatory</span>
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormInput
           name="name"
           type="text"
