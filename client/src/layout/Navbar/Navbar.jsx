@@ -44,7 +44,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 <Link to="/auth" className="signin">
                   SIGN IN
                 </Link>
-                <Link to="/auth" className="register">
+                <Link to="/signup" className="register">
                   REGISTER
                 </Link>
               </Link>

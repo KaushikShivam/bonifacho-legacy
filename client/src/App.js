@@ -7,7 +7,7 @@ import './App.css';
 import Navbar from './layout/Navbar/Navbar';
 import Footer from './layout/Footer/Footer';
 import Home from './pages/Home/Home';
-import Auth from './pages/Auth/Auth';
+import SignUp from './pages/SignUp/SignUp';
 import Alert from './components/Alert/Alert';
 
 import { loadUser } from './redux/actions/auth';
@@ -29,7 +29,7 @@ const App = ({ loadUser }) => {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/auth" component={Auth} />
+          <Route exact path="/signup" component={SignUp} />
         </Switch>
         <Footer />
       </div>

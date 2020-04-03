@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './SignUp.scss';
 
-import FormButton from '../FormButton/FormButton';
-import FormInput from './../FormInput/FormInput';
+import FormButton from '../../components/FormButton/FormButton';
+import FormInput from '../../components/FormInput/FormInput';
 
-import { setAlert } from './../../redux/actions/alert';
-import { registerUser } from './../../redux/actions/auth';
+import { setAlert } from '../../redux/actions/alert';
+import { registerUser } from '../../redux/actions/auth';
 
 const SignUp = ({ setAlert, registerUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -39,7 +39,7 @@ const SignUp = ({ setAlert, registerUser, isAuthenticated }) => {
 
   return (
     <div className="SignUp">
-      <h2 className="SignUp-title">I do not have a account</h2>
+      <h2 className="SignUp-title">Register</h2>
       <span className="SignUp-subtitle">
         Sign up with your email and password
       </span>
