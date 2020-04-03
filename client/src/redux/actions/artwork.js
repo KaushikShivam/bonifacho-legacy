@@ -10,7 +10,7 @@ export const createArtwork = body => async dispatch => {
       type: CREATE_ARTWORK
     });
 
-    dispatch(setAlert('Artwork Created', 'success'));
+    dispatch(setAlert('Artwork Created!', 'success'));
 
     return Promise.resolve();
   } catch (err) {

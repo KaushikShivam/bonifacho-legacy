@@ -12,4 +12,3 @@ export const LOGOUT = 'LOGOUT';
 
 // ARTWORK
 export const CREATE_ARTWORK = 'CREATE_ARTWORK';
-export const CREATE_ARTWORK_ERROR = 'CREATE_ARTWORK_ERROR';
