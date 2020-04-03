@@ -11,6 +11,8 @@ import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import Alert from './components/Alert/Alert';
 
+// import PrivateRoute from './routing/PrivateRoute/pr';
+
 import { loadUser } from './redux/actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
@@ -32,6 +34,7 @@ const App = ({ loadUser }) => {
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/login" component={Login} />
         </Switch>
         <Footer />
       </div>
