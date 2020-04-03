@@ -40,14 +40,14 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 </p>
               </div>
             ) : (
-              <Link className="login">
+              <div className="login">
                 <Link to="/auth" className="signin">
                   SIGN IN
                 </Link>
                 <Link to="/signup" className="register">
                   REGISTER
                 </Link>
-              </Link>
+              </div>
             ))}
           <div className="cart">
             <img src={`${cart}`} alt="Cart" />
