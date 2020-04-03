@@ -11,7 +11,35 @@ import searchInput from '../../assets/searchInput.png';
 
 import { logout } from './../../redux/actions/auth';
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
+  const adminLink = () =>
+    user &&
+    user.role === 'artist' && (
+      <Link to="/dashboard" className="signin">
+        DASHBOARD
+      </Link>
+    );
+
+  const authLinks = () => (
+    <div className="login">
+      {adminLink()}
+      <span onClick={logout} className="signin">
+        LOG OUT
+      </span>
+    </div>
+  );
+
+  const guestLinks = () => (
+    <div className="login">
+      <Link to="/login" className="signin">
+        SIGN IN
+      </Link>
+      <Link to="/signup" className="signin">
+        REGISTER
+      </Link>
+    </div>
+  );
+
   return (
     <div className="Navbar">
       <div className="Navbar-main">
@@ -32,23 +60,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
         {/* Right */}
         <div className="Navbar-main-right">
-          {!loading &&
-            (isAuthenticated ? (
-              <div className="login">
-                <p onClick={logout} className="signin">
-                  LOG OUT
-                </p>
-              </div>
-            ) : (
-              <div className="login">
-                <Link to="/login" className="signin">
-                  SIGN IN
-                </Link>
-                <Link to="/signup" className="register">
-                  REGISTER
-                </Link>
-              </div>
-            ))}
+          {!loading && (isAuthenticated ? authLinks() : guestLinks())}
           <div className="cart">
             <img src={`${cart}`} alt="Cart" />
             <span>8</span>
