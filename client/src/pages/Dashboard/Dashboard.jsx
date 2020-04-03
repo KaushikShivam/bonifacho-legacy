@@ -1,14 +1,16 @@
 import React from 'react';
 
+import './Dashboard.scss';
+
 import ArtworkForm from './../../components/ArtworkForm/ArtworkForm';
 
 const Dashboard = () => {
   return (
-    <main>
-      <nav>
+    <main className="Dashboard">
+      <nav className="Dashboard__nav">
         <button>Create New</button>
       </nav>
-      <div>
+      <div className="Dashboard__container">
         <ArtworkForm />
       </div>
     </main>
