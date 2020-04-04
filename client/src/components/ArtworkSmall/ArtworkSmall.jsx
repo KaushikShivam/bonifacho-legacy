@@ -19,7 +19,7 @@ const ArtworkSmall = ({
       <div className="ArtworkSmall__content">
         <div className="ArtworkSmall__info">
           <h3 className="ArtworkSmall__title">{name}</h3>
-          <p className="ArtworkSmall__author">{artist}</p>
+          <p className="ArtworkSmall__author">{artist.name}</p>
         </div>
         <div className="ArtworkSmall__detail">
           <p className="ArtworkSmall__price">{`$${price}`}</p>
