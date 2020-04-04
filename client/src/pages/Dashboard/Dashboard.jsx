@@ -7,15 +7,23 @@ import MyArtworks from './../../components/MyArtworks/MyArtworks';
 
 const Dashboard = () => {
   const [tab, setTab] = useState('My Artworks');
+  const [artworkId, setArtworkId] = useState(null);
+
+  const handleEdit = (id) => {
+    setTab('Edit Artwork');
+    setArtworkId(id);
+  };
 
   const handleTabDisplay = () => {
     switch (tab) {
       case 'My Artworks':
-        return <MyArtworks />;
+        return <MyArtworks handleEdit={handleEdit} />;
       case 'Create New':
         return <ArtworkForm />;
+      case 'Edit Artwork':
+        return <ArtworkForm editing artworkId={artworkId} />;
       default:
-        return <MyArtworks />;
+        return <MyArtworks handleEdit={handleEdit} />;
     }
   };
 

@@ -21,14 +21,12 @@ router
     artworkController.createArtwork
   );
 
+router.use(authController.protect, authController.restrictTo('artist'));
+
 router
   .route('/:id')
   .get(artworkController.getArtwork)
   .patch(artworkController.updateArtwork)
-  .delete(
-    authController.protect,
-    authController.restrictTo('artist'),
-    artworkController.deleteArtwork
-  );
+  .delete(artworkController.deleteArtwork);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './ArtworkForm.scss';
@@ -6,9 +6,15 @@ import './ArtworkForm.scss';
 import FormInput from './../FormInput/FormInput';
 import FormButton from './../FormButton/FormButton';
 
-import { createArtwork } from './../../redux/actions/artwork';
+import { createArtwork, getArtwork } from './../../redux/actions/artwork';
 
-const ArtworkForm = ({ editing, artwork, createArtwork }) => {
+const ArtworkForm = ({ editing, artwork, createArtwork, artworkId }) => {
+  useEffect(() => {
+    if (editing && artworkId) {
+      getArtwork(artworkId);
+    }
+  }, [artworkId, editing]);
+
   const [formData, setFormData] = useState({
     name: '',
     edition: '',
@@ -16,6 +22,8 @@ const ArtworkForm = ({ editing, artwork, createArtwork }) => {
     category: '',
     image: '',
   });
+
+  console.log('ha', artwork);
 
   if (editing && artwork) {
     setFormData(artwork);
@@ -91,8 +99,13 @@ const ArtworkForm = ({ editing, artwork, createArtwork }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  createArtwork: (body) => dispatch(createArtwork(body)),
+const mapStateToProps = (state) => ({
+  artwork: state.artwork.artwork,
 });
 
-export default connect(null, mapDispatchToProps)(ArtworkForm);
+const mapDispatchToProps = (dispatch) => ({
+  createArtwork: (body) => dispatch(createArtwork(body)),
+  getArtwork: (id) => dispatch(getArtwork(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArtworkForm);

@@ -8,12 +8,19 @@ import CustomButton from './../CustomButton/CustomButton';
 
 import { getUserArtworks, deleteArtwork } from './../../redux/actions/artwork';
 
-const MyArtworks = ({ artworks, getUserArtworks, deleteArtwork }) => {
+const MyArtworks = ({
+  artworks,
+  getUserArtworks,
+  deleteArtwork,
+  handleEdit,
+}) => {
   useEffect(() => {
     getUserArtworks();
   }, [getUserArtworks]);
 
   const handleDelete = (id) => () => deleteArtwork(id);
+
+  const handleClick = (id) => () => handleEdit(id);
 
   return (
     <main className="MyArtworks">
@@ -28,6 +35,7 @@ const MyArtworks = ({ artworks, getUserArtworks, deleteArtwork }) => {
               backgroundColor={`#0088CE`}
               padding="5px 20px"
               fontSize="1rem"
+              handleClick={handleClick(artwork.id)}
             >
               Edit
             </CustomButton>

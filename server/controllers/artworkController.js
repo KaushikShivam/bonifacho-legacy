@@ -42,7 +42,10 @@ exports.createArtwork = catchAsync(async (req, res, next) => {
 });
 
 exports.getArtwork = catchAsync(async (req, res, next) => {
-  const artwork = await Artwork.findById(req.params.id);
+  const artwork = await Artwork.findOne({
+    id: req.params.id,
+    artist: req.user.id,
+  });
 
   if (!artwork) {
     return next(new AppError('No Artwork found with this ID', 404));
