@@ -65,6 +65,8 @@ exports.updateArtwork = catchAsync(async (req, res, next) => {
     req.body,
     { new: true, runValidators: true }
   );
+  console.log(req.body);
+  console.log(artwork);
 
   if (!artwork) {
     return next(new AppError('No Artwork found with this ID', 404));

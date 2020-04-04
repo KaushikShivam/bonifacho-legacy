@@ -6,14 +6,20 @@ import './ArtworkForm.scss';
 import FormInput from './../FormInput/FormInput';
 import FormButton from './../FormButton/FormButton';
 
-import { createArtwork, getArtwork } from './../../redux/actions/artwork';
+import {
+  createArtwork,
+  getArtwork,
+  updateArtwork,
+} from './../../redux/actions/artwork';
 
 const ArtworkForm = ({
   editing,
   artwork,
   createArtwork,
+  updateArtwork,
   artworkId,
   getArtwork,
+  handleUpdate,
 }) => {
   useEffect(() => {
     if (editing && artworkId) {
@@ -23,7 +29,8 @@ const ArtworkForm = ({
 
   useEffect(() => {
     if (editing && artwork) {
-      setFormData(artwork);
+      const { name, edition, price, category, image } = artwork;
+      setFormData({ name, edition, price, category, image });
     }
   }, [artwork, editing]);
 
@@ -55,7 +62,7 @@ const ArtworkForm = ({
         })
       );
     } else {
-      // Update and move to dashboard
+      updateArtwork(artwork.id, formData).then(() => handleUpdate());
     }
   };
 
@@ -121,6 +128,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   createArtwork: (body) => dispatch(createArtwork(body)),
   getArtwork: (id) => dispatch(getArtwork(id)),
+  updateArtwork: (id, body) => dispatch(updateArtwork(id, body)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtworkForm);

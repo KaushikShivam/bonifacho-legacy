@@ -14,6 +14,8 @@ const Dashboard = () => {
     setArtworkId(id);
   };
 
+  const handleArtworkUpdate = () => setTab('My Artworks');
+
   const handleTabDisplay = () => {
     switch (tab) {
       case 'My Artworks':
@@ -21,7 +23,13 @@ const Dashboard = () => {
       case 'Create New':
         return <ArtworkForm />;
       case 'Edit Artwork':
-        return <ArtworkForm editing artworkId={artworkId} />;
+        return (
+          <ArtworkForm
+            editing
+            artworkId={artworkId}
+            handleUpdate={handleArtworkUpdate}
+          />
+        );
       default:
         return <MyArtworks handleEdit={handleEdit} />;
     }

@@ -13,14 +13,14 @@ const Home = () => {
   return (
     <div className="Home">
       <Hero />
-      <ArtworkWeek />
+      {/* <ArtworkWeek />
       <ArtistWeek />
       <CollectionPreview />
       <CollectionPreview />
       <CollectionPreview />
       <CollectionPreview />
       <Mailer />
-      <FineArt />
+      <FineArt /> */}
       <Services />
     </div>
   );

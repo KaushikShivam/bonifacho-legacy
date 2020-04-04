@@ -47,11 +47,15 @@ export const getArtwork = (id) => async (dispatch) => {
   }
 };
 
-export const updateArtwork = (id) => async (dispatch) => {
+export const updateArtwork = (id, body) => async (dispatch) => {
+  dispatch({ type: CLEAR_ARTWORK });
+
   try {
-    const res = await axios.patch(`/api/v1/artworks/${id}`);
-    dispatch(setAlert('Artwork Created!', 'success'));
+    const res = await axios.patch(`/api/v1/artworks/${id}`, body);
     dispatch({ type: UPDATE_ARTWORK, payload: res.data.data.artwork });
+    dispatch(setAlert('Artwork updated!', 'success'));
+
+    return Promise.resolve();
   } catch (err) {
     dispatch(setAlert(err.response.data.message, 'error'));
   }
