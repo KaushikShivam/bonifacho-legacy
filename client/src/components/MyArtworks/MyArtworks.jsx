@@ -21,7 +21,7 @@ const MyArtworks = ({ artworks, getUserArtworks }) => {
       </span>
       <div className="MyArtworks__artworks">
         {artworks.map((artwork) => (
-          <ArtworkSmall key={artwork.id}>
+          <ArtworkSmall key={artwork.id} {...artwork}>
             <CustomButton
               backgroundColor={`#0088CE`}
               padding="5px 20px"
