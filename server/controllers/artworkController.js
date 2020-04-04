@@ -60,10 +60,11 @@ exports.getArtwork = catchAsync(async (req, res, next) => {
 });
 
 exports.updateArtwork = catchAsync(async (req, res, next) => {
-  const artwork = await Artwork.findByIdAndUpdate(req.params.id, req.body, {
-    runValidators: true,
-    new: true,
-  });
+  const artwork = await Artwork.findOneAndUpdate(
+    { _id: req.params.id, artist: req.user.id },
+    req.body,
+    { new: true, runValidators: true }
+  );
 
   if (!artwork) {
     return next(new AppError('No Artwork found with this ID', 404));
