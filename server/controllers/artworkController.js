@@ -43,7 +43,7 @@ exports.createArtwork = catchAsync(async (req, res, next) => {
 
 exports.getArtwork = catchAsync(async (req, res, next) => {
   const artwork = await Artwork.findOne({
-    id: req.params.id,
+    _id: req.params.id,
     artist: req.user.id,
   });
 

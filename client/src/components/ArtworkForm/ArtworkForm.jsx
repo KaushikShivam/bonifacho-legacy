@@ -8,12 +8,24 @@ import FormButton from './../FormButton/FormButton';
 
 import { createArtwork, getArtwork } from './../../redux/actions/artwork';
 
-const ArtworkForm = ({ editing, artwork, createArtwork, artworkId }) => {
+const ArtworkForm = ({
+  editing,
+  artwork,
+  createArtwork,
+  artworkId,
+  getArtwork,
+}) => {
   useEffect(() => {
     if (editing && artworkId) {
       getArtwork(artworkId);
     }
-  }, [artworkId, editing]);
+  }, [artworkId, editing, getArtwork]);
+
+  useEffect(() => {
+    if (editing && artwork) {
+      setFormData(artwork);
+    }
+  }, [artwork, editing]);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -23,12 +35,6 @@ const ArtworkForm = ({ editing, artwork, createArtwork, artworkId }) => {
     image: '',
   });
 
-  console.log('ha', artwork);
-
-  if (editing && artwork) {
-    setFormData(artwork);
-  }
-
   const { name, edition, price, category, image } = formData;
 
   const handleChange = (e) =>
@@ -36,21 +42,28 @@ const ArtworkForm = ({ editing, artwork, createArtwork, artworkId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const reqBody = { ...formData, price: parseInt(price) };
-    createArtwork(reqBody).then(() =>
-      setFormData({
-        name: '',
-        edition: '',
-        price: '',
-        category: '',
-        image: '',
-      })
-    );
+
+    if (!editing) {
+      const reqBody = { ...formData, price: parseInt(price) };
+      createArtwork(reqBody).then(() =>
+        setFormData({
+          name: '',
+          edition: '',
+          price: '',
+          category: '',
+          image: '',
+        })
+      );
+    } else {
+      // Update and move to dashboard
+    }
   };
 
   return (
     <main className="ArtworkForm">
-      <h2 className="ArtworkForm__title">Create Your Artwork</h2>
+      <h2 className="ArtworkForm__title">{`${
+        editing ? 'Edit' : 'Create'
+      } Your Artwork`}</h2>
       <span className="ArtworkForm__subtitle">All fileds are mandatory</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -93,7 +106,9 @@ const ArtworkForm = ({ editing, artwork, createArtwork, artworkId }) => {
           label="Category"
           required
         />
-        <FormButton type="submit">Create</FormButton>
+        <FormButton type="submit">{`${
+          editing ? 'Save' : 'Create'
+        }`}</FormButton>
       </form>
     </main>
   );
