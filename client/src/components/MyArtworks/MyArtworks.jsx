@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './MyArtworks.scss';
 
 import ArtworkSmall from './../ArtworkSmall/ArtworkSmall';
+import CustomButton from './../CustomButton/CustomButton';
 
 import { getUserArtworks } from './../../redux/actions/artwork';
 
@@ -19,20 +20,35 @@ const MyArtworks = ({ artworks, getUserArtworks }) => {
         Edit and Delete your Artworks here
       </span>
       <div className="MyArtworks__artworks">
-        {artworks.map(artwork => (
-          <ArtworkSmall key={artwork.id} />
+        {artworks.map((artwork) => (
+          <ArtworkSmall key={artwork.id}>
+            <CustomButton
+              backgroundColor={`#0088CE`}
+              padding="5px 20px"
+              fontSize="1rem"
+            >
+              Edit
+            </CustomButton>
+            <CustomButton
+              backgroundColor={`#D24D25`}
+              padding="5px 20px"
+              fontSize="1rem"
+            >
+              Delete
+            </CustomButton>
+          </ArtworkSmall>
         ))}
       </div>
     </main>
   );
 };
 
-const mapStateToProps = state => ({
-  artworks: state.artwork.userArtworks
+const mapStateToProps = (state) => ({
+  artworks: state.artwork.userArtworks,
 });
 
-const mapDispatchToProps = dispatch => ({
-  getUserArtworks: () => dispatch(getUserArtworks())
+const mapDispatchToProps = (dispatch) => ({
+  getUserArtworks: () => dispatch(getUserArtworks()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyArtworks);
