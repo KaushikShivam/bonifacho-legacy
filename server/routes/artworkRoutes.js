@@ -25,6 +25,10 @@ router
   .route('/:id')
   .get(artworkController.getArtwork)
   .patch(artworkController.updateArtwork)
-  .delete(artworkController.deleteArtwork);
+  .delete(
+    authController.protect,
+    authController.restrictTo('artist'),
+    artworkController.deleteArtwork
+  );
 
 module.exports = router;

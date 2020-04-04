@@ -18,8 +18,8 @@ exports.getAllArtworks = catchAsync(async (req, res, next) => {
     status: 'success',
     results: artworks.length,
     data: {
-      artworks
-    }
+      artworks,
+    },
   });
 });
 
@@ -36,8 +36,8 @@ exports.createArtwork = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: 'success',
     data: {
-      artwork
-    }
+      artwork,
+    },
   });
 });
 
@@ -51,15 +51,15 @@ exports.getArtwork = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     data: {
-      artwork
-    }
+      artwork,
+    },
   });
 });
 
 exports.updateArtwork = catchAsync(async (req, res, next) => {
   const artwork = await Artwork.findByIdAndUpdate(req.params.id, req.body, {
     runValidators: true,
-    new: true
+    new: true,
   });
 
   if (!artwork) {
@@ -69,13 +69,16 @@ exports.updateArtwork = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     data: {
-      artwork
-    }
+      artwork,
+    },
   });
 });
 
 exports.deleteArtwork = catchAsync(async (req, res, next) => {
-  const artwork = await Artwork.findByIdAndDelete(req.params.id);
+  const artwork = await Artwork.findOneAndRemove({
+    _id: req.params.id,
+    creator: req.user.id,
+  });
 
   if (!artwork) {
     return next(new AppError('No Artwork found with this ID', 404));
@@ -83,6 +86,6 @@ exports.deleteArtwork = catchAsync(async (req, res, next) => {
 
   res.status(204).json({
     status: 'success',
-    data: null
+    data: null,
   });
 });
