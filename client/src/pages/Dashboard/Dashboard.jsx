@@ -24,8 +24,18 @@ const Dashboard = () => {
   return (
     <main className="Dashboard">
       <nav className="Dashboard__nav">
-        <button onClick={handleButtonClick}>My Artworks</button>
-        <button onClick={handleButtonClick}>Create New</button>
+        <button
+          className={`Dashboard__btn ${tab === 'My Artworks' ? 'active' : ''}`}
+          onClick={handleButtonClick}
+        >
+          My Artworks
+        </button>
+        <button
+          className={`Dashboard__btn ${tab === 'Create New' && 'active'}`}
+          onClick={handleButtonClick}
+        >
+          Create New
+        </button>
       </nav>
       <div className="Dashboard__container">{handleTabDisplay()}</div>
     </main>

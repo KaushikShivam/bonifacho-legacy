@@ -3,10 +3,13 @@ import {
   GET_USER_ARTWORKS,
   CLEAR_USER_ARTWORKS,
   DELETE_ARTWORK,
+  GET_ARTWORK,
+  CLEAR_ARTWORK,
 } from './../actions/types';
 
 const INITIAL_STATE = {
   userArtworks: [],
+  artwork: null,
 };
 
 const artworkReducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +26,10 @@ const artworkReducer = (state = INITIAL_STATE, action) => {
           (artwork) => artwork.id !== payload
         ),
       };
+    case CLEAR_ARTWORK:
+      return { ...state, artwork: null };
+    case GET_ARTWORK:
+      return { ...state, artwork: payload };
     case CREATE_ARTWORK:
     default:
       return state;

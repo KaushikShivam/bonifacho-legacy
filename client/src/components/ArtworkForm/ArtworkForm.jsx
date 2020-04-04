@@ -8,21 +8,25 @@ import FormButton from './../FormButton/FormButton';
 
 import { createArtwork } from './../../redux/actions/artwork';
 
-const ArtworkForm = ({ createArtwork }) => {
+const ArtworkForm = ({ editing, artwork, createArtwork }) => {
   const [formData, setFormData] = useState({
     name: '',
     edition: '',
     price: '',
     category: '',
-    image: ''
+    image: '',
   });
+
+  if (editing && artwork) {
+    setFormData(artwork);
+  }
 
   const { name, edition, price, category, image } = formData;
 
-  const handleChange = e =>
+  const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const reqBody = { ...formData, price: parseInt(price) };
     createArtwork(reqBody).then(() =>
@@ -31,7 +35,7 @@ const ArtworkForm = ({ createArtwork }) => {
         edition: '',
         price: '',
         category: '',
-        image: ''
+        image: '',
       })
     );
   };
@@ -87,8 +91,8 @@ const ArtworkForm = ({ createArtwork }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  createArtwork: body => dispatch(createArtwork(body))
+const mapDispatchToProps = (dispatch) => ({
+  createArtwork: (body) => dispatch(createArtwork(body)),
 });
 
 export default connect(null, mapDispatchToProps)(ArtworkForm);
