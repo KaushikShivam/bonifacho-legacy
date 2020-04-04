@@ -6,6 +6,7 @@ import {
   DELETE_ARTWORK,
   GET_ARTWORK,
   CLEAR_ARTWORK,
+  UPDATE_ARTWORK,
 } from './types';
 import { setAlert } from './alert';
 
@@ -41,6 +42,16 @@ export const getArtwork = (id) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/v1/artworks/${id}`);
     dispatch({ type: GET_ARTWORK, payload: res.data.data.artwork });
+  } catch (err) {
+    dispatch(setAlert(err.response.data.message, 'error'));
+  }
+};
+
+export const updateArtwork = (id) => async (dispatch) => {
+  try {
+    const res = await axios.patch(`/api/v1/artworks/${id}`);
+    dispatch(setAlert('Artwork Created!', 'success'));
+    dispatch({ type: UPDATE_ARTWORK, payload: res.data.data.artwork });
   } catch (err) {
     dispatch(setAlert(err.response.data.message, 'error'));
   }

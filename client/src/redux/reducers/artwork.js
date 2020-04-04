@@ -5,6 +5,7 @@ import {
   DELETE_ARTWORK,
   GET_ARTWORK,
   CLEAR_ARTWORK,
+  UPDATE_ARTWORK,
 } from './../actions/types';
 
 const INITIAL_STATE = {
@@ -30,6 +31,13 @@ const artworkReducer = (state = INITIAL_STATE, action) => {
       return { ...state, artwork: null };
     case GET_ARTWORK:
       return { ...state, artwork: payload };
+    case UPDATE_ARTWORK:
+      return {
+        ...state,
+        userArtworks: state.userArtworks.map((artwork) =>
+          artwork.id === payload.id ? payload : artwork
+        ),
+      };
     case CREATE_ARTWORK:
     default:
       return state;
