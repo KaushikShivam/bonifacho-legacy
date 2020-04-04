@@ -2,11 +2,18 @@ import React from 'react';
 
 import './CustomButton.scss';
 
-const Button = ({ children, backgroundColor, padding, fontSize }) => {
+const Button = ({
+  children,
+  backgroundColor,
+  padding,
+  fontSize,
+  handleClick,
+}) => {
   return (
     <button
       style={{ backgroundColor, padding, fontSize }}
       className="CustomButton"
+      onClick={handleClick}
     >
       {children}
     </button>

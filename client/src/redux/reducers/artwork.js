@@ -19,7 +19,9 @@ const artworkReducer = (state = INITIAL_STATE, action) => {
     case DELETE_ARTWORK:
       return {
         ...state,
-        userArtworks: userArtworks.filter((artwork) => artwork.id !== payload),
+        userArtworks: state.userArtworks.filter(
+          (artwork) => artwork.id !== payload
+        ),
       };
     case CREATE_ARTWORK:
     default:

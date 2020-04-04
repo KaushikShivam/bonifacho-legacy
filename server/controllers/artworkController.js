@@ -77,7 +77,7 @@ exports.updateArtwork = catchAsync(async (req, res, next) => {
 exports.deleteArtwork = catchAsync(async (req, res, next) => {
   const artwork = await Artwork.findOneAndRemove({
     _id: req.params.id,
-    creator: req.user.id,
+    artist: req.user.id,
   });
 
   if (!artwork) {

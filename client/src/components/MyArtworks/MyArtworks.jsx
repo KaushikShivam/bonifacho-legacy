@@ -6,12 +6,14 @@ import './MyArtworks.scss';
 import ArtworkSmall from './../ArtworkSmall/ArtworkSmall';
 import CustomButton from './../CustomButton/CustomButton';
 
-import { getUserArtworks } from './../../redux/actions/artwork';
+import { getUserArtworks, deleteArtwork } from './../../redux/actions/artwork';
 
-const MyArtworks = ({ artworks, getUserArtworks }) => {
+const MyArtworks = ({ artworks, getUserArtworks, deleteArtwork }) => {
   useEffect(() => {
     getUserArtworks();
-  }, []);
+  }, [getUserArtworks]);
+
+  const handleDelete = (id) => () => deleteArtwork(id);
 
   return (
     <main className="MyArtworks">
@@ -33,6 +35,7 @@ const MyArtworks = ({ artworks, getUserArtworks }) => {
               backgroundColor={`#D24D25`}
               padding="5px 20px"
               fontSize="1rem"
+              handleClick={handleDelete(artwork.id)}
             >
               Delete
             </CustomButton>
@@ -49,6 +52,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getUserArtworks: () => dispatch(getUserArtworks()),
+  deleteArtwork: (id) => dispatch(deleteArtwork(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyArtworks);
