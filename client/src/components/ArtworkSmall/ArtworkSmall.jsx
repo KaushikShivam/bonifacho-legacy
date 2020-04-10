@@ -1,6 +1,6 @@
-import React from 'react';
-import sampleArtworkBig from '../../assets/sampleArtworkBig.png';
-import './ArtworkSmall.scss';
+import React from 'react'
+import sampleArtworkBig from '../../assets/sampleArtworkBig.png'
+import './ArtworkSmall.scss'
 
 const ArtworkSmall = ({
   children,
@@ -27,7 +27,7 @@ const ArtworkSmall = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ArtworkSmall;
+export default ArtworkSmall
