@@ -23,6 +23,10 @@ exports.getAllArtworks = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getArtworkWithCategories = catchAsync(async (req, res, next) => {
+  const artworks = await Artwork.aggregate([{}]);
+});
+
 exports.getMyArtworks = (req, res, next) => {
   req.query.artist = req.user.id;
   next();
