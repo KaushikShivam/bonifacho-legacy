@@ -24,7 +24,20 @@ exports.getAllArtworks = catchAsync(async (req, res, next) => {
 });
 
 exports.getArtworkWithCategories = catchAsync(async (req, res, next) => {
-  const artworks = await Artwork.aggregate([{}]);
+  const artworks = await Artwork.aggregate([
+    {
+      $group: {
+        _id: '$category',
+        artworks: { $push: '$$ROOT' },
+      },
+    },
+  ]);
+
+  res.status(200).json({
+    data: {
+      artworks,
+    },
+  });
 });
 
 exports.getMyArtworks = (req, res, next) => {

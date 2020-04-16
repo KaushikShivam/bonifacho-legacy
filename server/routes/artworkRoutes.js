@@ -12,6 +12,11 @@ router.get(
   artworkController.getAllArtworks
 );
 
+router.get(
+  '/get-category-artworks',
+  artworkController.getArtworkWithCategories
+);
+
 router
   .route('/')
   .get(artworkController.getAllArtworks)
