@@ -1,29 +1,48 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 // Layout
-import Hero from './layout/Hero/Hero'
-import ArtworkWeek from './layout/ArtworkWeek/ArtworkWeek'
-import ArtistWeek from './layout/ArtistWeek/ArtistWeek'
-import CollectionPreview from './layout/CollectionPreview/CollectionPreview'
-import Mailer from './layout/Mailer/Mailer'
-import FineArt from './layout/FineArt/FineArt'
-import Services from './layout/Services/Services'
+import Hero from './layout/Hero/Hero';
+import ArtworkWeek from './layout/ArtworkWeek/ArtworkWeek';
+import ArtistWeek from './layout/ArtistWeek/ArtistWeek';
+import CollectionPreview from './layout/CollectionPreview/CollectionPreview';
+import Mailer from './layout/Mailer/Mailer';
+import FineArt from './layout/FineArt/FineArt';
+import Services from './layout/Services/Services';
 
-const Home = () => {
+// Redux
+import { getArtworksWithCategories } from './../../redux/actions/artwork';
+
+const Home = ({ getArtworksWithCategories, artworkCategories }) => {
+  useEffect(() => {
+    getArtworksWithCategories();
+  }, [getArtworksWithCategories]);
+
+  const configureArtworkCategories = () => {
+    return artworkCategories.map((artwork) => (
+      <CollectionPreview key={artwork._id} {...artwork} />
+    ));
+  };
+
   return (
     <div className="Home">
       <Hero />
       <ArtworkWeek />
       <ArtistWeek />
-      <CollectionPreview />
-      <CollectionPreview />
-      <CollectionPreview />
-      <CollectionPreview />
+      {configureArtworkCategories()}
       <Mailer />
       <FineArt />
       <Services />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+const mapStateToProps = (state) => ({
+  artworkCategories: state.artwork.artworkCategories,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getArtworksWithCategories: () => dispatch(getArtworksWithCategories()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
