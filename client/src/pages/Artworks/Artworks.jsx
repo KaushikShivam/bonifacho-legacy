@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 // components
@@ -8,12 +8,17 @@ import ArtworkBig from './../../components/ArtworkBig/ArtworkBig';
 import { getAllArtworks } from './../../redux/actions/artwork';
 
 const Artworks = ({ artworks, getAllArtworks }) => {
-  const configureArtworks = () => artworks.map((artwork) => <ArtworkBig />);
+  useEffect(() => {
+    getAllArtworks();
+  }, [getAllArtworks]);
+
+  const configureArtworks = () =>
+    artworks.map((artwork) => <ArtworkBig key={artwork.id} {...artwork} />);
 
   return (
     <main className="Artworks">
       <nav className="Artworks__nav"></nav>
-      <div className="Artworks__container">{}</div>
+      <div className="Artworks__container">{configureArtworks()}</div>
     </main>
   );
 };
