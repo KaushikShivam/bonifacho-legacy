@@ -1,19 +1,18 @@
 import React from 'react';
-import sampleArtworkBig from '../../assets/sampleArtworkBig.png';
 import './ArtworkBig.scss';
 
 import CustomButton from './../CustomButton/CustomButton';
 
-const ArtworkBig = () => {
+const ArtworkBig = ({ name, artist, edition, price, category, image }) => {
   return (
     <div className="ArtworkBig">
       <div className="ArtworkBig-img">
-        <img src={`${sampleArtworkBig}`} alt="" />
+        <img src={image} alt={name} />
       </div>
       <div className="ArtworkBig-content">
         <div className="ArtworkBig-info">
-          <h3 className="ArtworkBig-title">Butterfly Affect</h3>
-          <p className="ArtworkBig-author">Thomas Bijen</p>
+          <h3 className="ArtworkBig-title">{name}</h3>
+          <p className="ArtworkBig-author">{artist.name}</p>
         </div>
         <div className="ArtworkBig-detail">
           <CustomButton
