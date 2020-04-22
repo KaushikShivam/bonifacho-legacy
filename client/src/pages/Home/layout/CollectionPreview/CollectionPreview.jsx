@@ -1,20 +1,40 @@
-import React from 'react'
-import './CollectionPreview.scss'
+import React, { useState } from 'react';
+import './CollectionPreview.scss';
 
-import CustomButton from './../../../../components/CustomButton/CustomButton'
-import CustomLink from './../../../../components/CustomLink/CustomLink'
-import ArtworkSmall from './../../../../components/ArtworkSmall/ArtworkSmall'
+import CustomButton from './../../../../components/CustomButton/CustomButton';
+import CustomLink from './../../../../components/CustomLink/CustomLink';
+import ArtworkSmall from './../../../../components/ArtworkSmall/ArtworkSmall';
 
-const CollectionPreview = () => {
+const CollectionPreview = ({ _id, artworks }) => {
+  const [edition, setEdition] = useState('limited');
+
+  const configureArtworkSmall = () => {
+    const filteredArtworks = artworks
+      .filter((artwork) => edition === artwork.edition)
+      .slice(0, 4);
+    return filteredArtworks.map((artwork) => (
+      <ArtworkSmall key={artwork._id} {...artwork}>
+        <CustomButton
+          backgroundColor={`rgb(171, 155, 138)`}
+          padding="5px 10px"
+          fontSize="1rem"
+        >
+          SHOW NOW
+        </CustomButton>
+      </ArtworkSmall>
+    ));
+  };
+
   return (
     <div className="CollectionPreview">
       <div className="CollectionPreview-header">
-        <h3 className="CollectionPreview-title">BEST SELLERS</h3>
+        <h3 className="CollectionPreview-title">{_id.toUpperCase()}</h3>
         <div className="CollectionPreview-buttons">
           <CustomButton
             backgroundColor="#AB9B8A"
             padding="1.1rem 2rem"
             fontSize="1.2rem"
+            handleClick={() => setEdition('limited')}
           >
             LIMITED EDITIONS
           </CustomButton>
@@ -22,78 +42,22 @@ const CollectionPreview = () => {
             backgroundColor="black"
             padding="1.1rem 2rem"
             fontSize="1.2rem"
+            handleClick={() => setEdition('original')}
           >
             ORIGINAL ARTWORKS
           </CustomButton>
         </div>
       </div>
       <div className="CollectionPreview-artworks">
-        <ArtworkSmall
-          name="Apollo"
-          artist="Shivam Kaushik"
-          image="http://www.fosterwhite.com/dynamic/images/display/Casey_McGlynn_Small_Herd_1_823199433_375.jpg"
-          price="1000"
-        >
-          <CustomButton
-            backgroundColor={`rgb(171, 155, 138)`}
-            padding="5px 20px"
-            fontSize="1rem"
-            // handleClick={handleDelete(artwork.id)}
-          >
-            SHOW NOW
-          </CustomButton>
-        </ArtworkSmall>
-        <ArtworkSmall
-          name="Apollo"
-          artist="Shivam Kaushik"
-          image="http://www.fosterwhite.com/dynamic/images/display/Casey_McGlynn_Ships_on_the_Horizon_823198311_375.jpg"
-          price="1000"
-        >
-          <CustomButton
-            backgroundColor={`rgb(171, 155, 138)`}
-            padding="5px 20px"
-            fontSize="1rem"
-            // handleClick={handleDelete(artwork.id)}
-          >
-            SHOW NOW
-          </CustomButton>
-        </ArtworkSmall>
-        <ArtworkSmall
-          name="Apollo"
-          artist="Shivam Kaushik"
-          image="http://www.fosterwhite.com/dynamic/images/display/Casey_McGlynn_From_the_Beginning_and_to_the_End_of_Tim_823198308_375.jpg"
-          price="1000"
-        >
-          <CustomButton
-            backgroundColor={`rgb(171, 155, 138)`}
-            padding="5px 20px"
-            fontSize="1rem"
-            // handleClick={handleDelete(artwork.id)}
-          >
-            SHOW NOW
-          </CustomButton>
-        </ArtworkSmall>
-        <ArtworkSmall
-          name="Apollo"
-          artist="Shivam Kaushik"
-          image="http://www.fosterwhite.com/dynamic/images/display/Alden_Mason_Spirit_Bird_Landscape_13882_375.jpg"
-          price="1000"
-        >
-          <CustomButton
-            backgroundColor={`rgb(171, 155, 138)`}
-            padding="5px 20px"
-            fontSize="1rem"
-            // handleClick={handleDelete(artwork.id)}
-          >
-            SHOW NOW
-          </CustomButton>
-        </ArtworkSmall>
+        {configureArtworkSmall()}
       </div>
       <div className="ArtworkWeek-link">
-        <CustomLink>BROWSE ALL BEST-SELLERS IN ORIGINAL EDITIONS</CustomLink>
+        <CustomLink>
+          BROWSE ALL {_id.toUpperCase()} IN {edition.toUpperCase()} EDITIONS
+        </CustomLink>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CollectionPreview
+export default CollectionPreview;
