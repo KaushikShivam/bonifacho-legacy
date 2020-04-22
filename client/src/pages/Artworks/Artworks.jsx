@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import './Artworks.scss';
+
 // components
 import ArtworkBig from './../../components/ArtworkBig/ArtworkBig';
 
