@@ -19,7 +19,6 @@ const Home = ({ getArtworksWithCategories, artworkCategories }) => {
   }, [getArtworksWithCategories]);
 
   const configureArtworkCategories = () => {
-    console.log(artworkCategories);
     return artworkCategories.map((artwork) => (
       <CollectionPreview key={artwork._id} {...artwork} />
     ));

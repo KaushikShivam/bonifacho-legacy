@@ -8,6 +8,7 @@ import {
   CLEAR_ARTWORK,
   UPDATE_ARTWORK,
   GET_USER_ARTWORKS_CATEGORIES,
+  GET_ALL_ARTWORKS,
 } from './types';
 import { setAlert } from './alert';
 
@@ -32,6 +33,16 @@ export const getUserArtworks = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/v1/artworks/get-my-artworks');
     dispatch({ type: GET_USER_ARTWORKS, payload: res.data.data.artworks });
+  } catch (err) {
+    dispatch(setAlert('No Artworks found', 'error'));
+  }
+};
+
+export const getAllArtworks = () => async (dispatch) => {
+  dispatch({ type: CLEAR_USER_ARTWORKS });
+  try {
+    const res = await axios.get('/api/v1/artworks');
+    dispatch({ type: GET_ALL_ARTWORKS, payload: res.data.data.artworks });
   } catch (err) {
     dispatch(setAlert('No Artworks found', 'error'));
   }

@@ -7,9 +7,11 @@ import {
   CLEAR_ARTWORK,
   UPDATE_ARTWORK,
   GET_USER_ARTWORKS_CATEGORIES,
+  GET_ALL_ARTWORKS,
 } from './../actions/types';
 
 const INITIAL_STATE = {
+  artworks: [],
   userArtworks: [],
   artwork: null,
   artworkCategories: [],
@@ -20,6 +22,8 @@ const artworkReducer = (state = INITIAL_STATE, action) => {
   switch (type) {
     case GET_USER_ARTWORKS:
       return { ...state, userArtworks: payload };
+    case GET_ALL_ARTWORKS:
+      return { ...state, artworks: payload };
     case GET_USER_ARTWORKS_CATEGORIES:
       return { ...state, artworkCategories: payload };
     case CLEAR_USER_ARTWORKS:
