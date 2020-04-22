@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import Alert from './components/Alert/Alert';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Artworks from './pages/Artworks/Artworks';
 
 import AdminRoute from './routing/AdminRoute';
 import PrivateRoute from './routing/PrivateRoute';
@@ -36,6 +37,7 @@ const App = ({ loadUser }) => {
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/artworks" component={Artworks} />
           <AdminRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
         <Footer />
@@ -44,8 +46,8 @@ const App = ({ loadUser }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  loadUser: () => dispatch(loadUser())
+const mapDispatchToProps = (dispatch) => ({
+  loadUser: () => dispatch(loadUser()),
 });
 
 export default connect(null, mapDispatchToProps)(App);
