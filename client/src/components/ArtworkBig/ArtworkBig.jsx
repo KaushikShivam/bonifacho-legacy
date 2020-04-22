@@ -3,7 +3,7 @@ import './ArtworkBig.scss';
 
 import CustomButton from './../CustomButton/CustomButton';
 
-const ArtworkBig = ({ name, artist, edition, price, category, image }) => {
+const ArtworkBig = ({ name, artist, image }) => {
   return (
     <div className="ArtworkBig">
       <div className="ArtworkBig-img">
