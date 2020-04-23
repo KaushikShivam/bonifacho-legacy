@@ -42,6 +42,9 @@ exports.getArtworkWithCategories = catchAsync(async (req, res, next) => {
 
 exports.getArtworkWeek = catchAsync(async (req, res, next) => {
   const artworks = await Artwork.aggregate([{ $sample: { size: 2 } }]);
+  // const artworks = await Artwork.find().limit(2);
+
+  console.log(artworks)
 
   res.status(200).json({
     data: {
