@@ -8,6 +8,7 @@ import {
   UPDATE_ARTWORK,
   GET_USER_ARTWORKS_CATEGORIES,
   GET_ALL_ARTWORKS,
+  GET_ARTWORK_WEEK
 } from './../actions/types';
 
 const INITIAL_STATE = {
@@ -15,6 +16,7 @@ const INITIAL_STATE = {
   userArtworks: [],
   artwork: null,
   artworkCategories: [],
+  artworkWeek: []
 };
 
 const artworkReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +28,8 @@ const artworkReducer = (state = INITIAL_STATE, action) => {
       return { ...state, artworks: payload };
     case GET_USER_ARTWORKS_CATEGORIES:
       return { ...state, artworkCategories: payload };
+    case GET_ARTWORK_WEEK:
+      return { ...state, artworkWeek: payload }
     case CLEAR_USER_ARTWORKS:
       return { ...state, userArtworks: [] };
     case DELETE_ARTWORK:
