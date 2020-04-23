@@ -5,7 +5,7 @@ const authController = require('./../controllers/authController');
 const router = express.Router();
 
 router.get(
-  '/get-my-artworks',
+  '/my-artworks',
   authController.protect,
   authController.restrictTo('artist'),
   artworkController.getMyArtworks,
@@ -13,8 +13,13 @@ router.get(
 );
 
 router.get(
-  '/get-category-artworks',
+  '/category-artworks',
   artworkController.getArtworkWithCategories
+);
+
+router.get(
+  '/artwork-week',
+  artworkController.getArtworkWeek
 );
 
 router

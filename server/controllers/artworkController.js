@@ -40,6 +40,16 @@ exports.getArtworkWithCategories = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getArtworkWeek = catchAsync(async (req, res, next) => {
+  const artworks = await Artwork.aggregate([{ $sample: { size: 2 } }]);
+
+  res.status(200).json({
+    data: {
+      artworks,
+    },
+  });
+});
+
 exports.getMyArtworks = (req, res, next) => {
   req.query.artist = req.user.id;
   next();

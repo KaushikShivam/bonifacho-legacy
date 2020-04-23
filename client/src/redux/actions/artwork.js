@@ -31,7 +31,7 @@ export const createArtwork = (body) => async (dispatch) => {
 export const getUserArtworks = () => async (dispatch) => {
   dispatch({ type: CLEAR_USER_ARTWORKS });
   try {
-    const res = await axios.get('/api/v1/artworks/get-my-artworks');
+    const res = await axios.get('/api/v1/artworks/my-artworks');
     dispatch({ type: GET_USER_ARTWORKS, payload: res.data.data.artworks });
   } catch (err) {
     dispatch(setAlert('No Artworks found', 'error'));
@@ -50,7 +50,7 @@ export const getAllArtworks = () => async (dispatch) => {
 
 export const getArtworksWithCategories = () => async (dispatch) => {
   try {
-    const res = await axios.get('/api/v1/artworks/get-category-artworks');
+    const res = await axios.get('/api/v1/artworks/category-artworks');
     dispatch({
       type: GET_USER_ARTWORKS_CATEGORIES,
       payload: res.data.data.artworks,
