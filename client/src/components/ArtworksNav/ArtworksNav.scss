@@ -29,12 +29,12 @@
 		padding: 1.5rem;
 
 		& .rc-slider-rail {
-			height: 8px !important;
+			height: 4px !important;
 			border-radius: initial;
 		}
 
 		& .rc-slider-track {
-			background-color: white;
+			background-color: rgba(255, 255, 255, 0.411);
 		}
 
 		& .rc-slider-handle,
@@ -42,11 +42,12 @@
 		& .rc-slider-handle:hover,
 		& .rc-slider-handle:focus {
 			outline: none;
-			border: 4px solid #104573;
+			border: 2px solid rgba(255, 255, 255, 0.5);
+			background: black;
 			box-shadow: none;
 			width: 3rem;
 			height: 3rem;
-			margin-top: -10px;
+			margin-top: -12px;
 			border-radius: initial;
 		}
 	}

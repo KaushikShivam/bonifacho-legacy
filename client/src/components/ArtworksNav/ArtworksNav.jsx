@@ -6,6 +6,9 @@ import './ArtworksNav.scss';
 
 import CheckBox from './../CheckBox/CheckBox';
 
+const createSliderWithTooltip = Slider.createSliderWithTooltip;
+const Range = createSliderWithTooltip(Slider.Range);
+
 const ArtworksNav = () => {
 	return (
 		<main className='ArtworksNav'>
@@ -32,11 +35,11 @@ const ArtworksNav = () => {
 			<section className='ArtworksNav__section'>
 				<h4 className='ArtworksNav__header'>Price</h4>
 				<div className='ArtworksNav__slider'>
-					<Slider
-						defaultValue={0}
-						min={100}
-						max={900}
-						step={100}
+					<Range
+						defaultValue={[0, 60000]}
+						min={1000}
+						max={60000}
+						step={1000}
 						// onChange={changeLevel}
 					/>
 				</div>
