@@ -10,11 +10,14 @@ class APIFeatures {
 		excludedFields.forEach((el) => delete queryObj[el]);
 
 		// edition
-		console.log(queryObj.edition);
 		if (queryObj.edition && queryObj.edition.includes(',')) {
 			queryObj.edition = { $in: [...queryObj.edition.split(',')] };
 		}
-		console.log(queryObj);
+
+		// categories
+		if (queryObj.category && queryObj.category.includes(',')) {
+			queryObj.category = { $in: [...queryObj.category.split(',')] };
+		}
 
 		// Advanced Filtering
 		let queryStr = JSON.stringify(queryObj);
