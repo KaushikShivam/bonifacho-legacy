@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import Slider from 'rc-slider';
 
 import 'rc-slider/assets/index.css';
@@ -10,6 +11,17 @@ const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
 const ArtworksNav = () => {
+	// useEffect(async () => {
+	// 	try {
+	// 		const res = await axios.get('/api/v1/artworks', {
+	// 			params: { 'price[gte]': 44000, 'price[lte]': 50000 },
+	// 		});
+	// 		console.log(res.data);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// }, []);
+
 	return (
 		<main className='ArtworksNav'>
 			<section className='ArtworksNav__section'>
