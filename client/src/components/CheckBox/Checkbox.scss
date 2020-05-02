@@ -8,7 +8,10 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	cursor: pointer;
+	transition: all 0.2s;
 
+	// &:hover,
 	&.checked {
 		color: white;
 		border: 1px solid white;
