@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import Slider from 'rc-slider';
 
 import 'rc-slider/assets/index.css';
@@ -11,28 +10,22 @@ const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
 const ArtworksNav = () => {
-	// useEffect(async () => {
-	// 	try {
-	// 		const res = await axios.get('/api/v1/artworks', {
-	// 			params: { 'pr	// useEffect(async () => {
-	// 	try {
-	// 		const res = await axios.get('/api/v1/artworks', {
-	// 			params: { 'price[gte]': 44000, 'price[lte]': 50000 },
-	// 		});
-	// 		console.log(res.data);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// }, []);ice[gte]': 44000, 'price[lte]': 50000 },
-	// 		});
-	// 		console.log(res.data);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// }, []);
-
 	const [edition, setEdition] = useState([]);
 	const [category, setCategory] = useState([]);
+	const [price, setPrice] = useState([1000, 60000]);
+
+	useEffect(() => {
+		fetchArtworksWithFilter();
+	}, [edition, category, price]);
+
+	const fetchArtworksWithFilter = () => {
+		const filterObj = {};
+		if (edition.length > 0) filterObj.edition = edition.join(',');
+		if (category.length > 0) filterObj.category = category.join(',');
+		filterObj['price[gte]'] = price[0];
+		filterObj['price[lte]'] = price[1];
+		console.log(filterObj);
+	};
 
 	const handleFilter = (type, checked) => {
 		switch (type) {
@@ -56,9 +49,6 @@ const ArtworksNav = () => {
 				break;
 		}
 	};
-
-	console.log(edition);
-	console.log(category);
 
 	return (
 		<main className='ArtworksNav'>
@@ -86,11 +76,11 @@ const ArtworksNav = () => {
 				<h4 className='ArtworksNav__header'>Price</h4>
 				<div className='ArtworksNav__slider'>
 					<Range
-						defaultValue={[0, 60000]}
+						defaultValue={price}
 						min={1000}
 						max={60000}
 						step={1000}
-						// onChange={changeLevel}
+						onChange={(value) => setPrice(value)}
 					/>
 				</div>
 			</section>
