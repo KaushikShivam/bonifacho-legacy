@@ -9,7 +9,7 @@ import CheckBox from './../CheckBox/CheckBox';
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
-const ArtworksNav = () => {
+const ArtworksNav = ({ handleFetch }) => {
 	const [edition, setEdition] = useState([]);
 	const [category, setCategory] = useState([]);
 	const [price, setPrice] = useState([1000, 60000]);
@@ -24,7 +24,7 @@ const ArtworksNav = () => {
 		if (category.length > 0) filterObj.category = category.join(',');
 		filterObj['price[gte]'] = price[0];
 		filterObj['price[lte]'] = price[1];
-		console.log(filterObj);
+		handleFetch(filterObj);
 	};
 
 	const handleFilter = (type, checked) => {
@@ -39,7 +39,7 @@ const ArtworksNav = () => {
 			case 'Painting':
 			case 'Post-war':
 			case 'Impressionist':
-			case 'Photograph':
+			case 'Photography':
 			case 'Abstract':
 				checked
 					? setCategory(category.concat(type))
@@ -80,7 +80,7 @@ const ArtworksNav = () => {
 						min={1000}
 						max={60000}
 						step={1000}
-						onChange={(value) => setPrice(value)}
+						onAfterChange={(value) => setPrice(value)}
 					/>
 				</div>
 			</section>
