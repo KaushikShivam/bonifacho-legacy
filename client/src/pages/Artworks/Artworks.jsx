@@ -10,8 +10,9 @@ import ArtworkBig from './../../components/ArtworkBig/ArtworkBig';
 // redux
 import { getAllArtworks } from './../../redux/actions/artwork';
 
-const Artworks = ({ artworks, getAllArtworks }) => {
+const Artworks = ({ location, artworks, getAllArtworks }) => {
 	useEffect(() => {
+		console.log(location.state.edition);
 		getAllArtworks();
 	}, [getAllArtworks]);
 
